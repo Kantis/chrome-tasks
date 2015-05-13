@@ -1,0 +1,25 @@
+{
+  "manifest_version": 2,
+
+  "name": "Chrome Tasks",
+  "description": "This extension shows Google Tasks on the new tab page",
+  "version": "0.1",
+  "chrome_url_overrides": {
+    "newtab": "myPage.html"
+  },
+  "content_scripts": [
+    {
+      "matches": ["http://www.google.com/robots.txt*"],
+      "js": ["oauth2/oauth2_inject.js"],
+      "run_at": "document_start"
+    }
+  ],
+  "permissions": [
+    "activeTab",
+    "https://www.googleapis.com/",
+    "https://accounts.google.com/o/oauth2/token"
+  ],
+  "web_accessible_resources": [
+    "oauth2/oauth2.html"
+  ]
+}

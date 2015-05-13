@@ -1,0 +1,23 @@
+<!DOCTYPE HTML>
+<html ng-app="chromeTasks" ng-csp>
+	<head>
+		<title>Chrome Tasks - New Tab</title>
+		<link rel="stylesheet" href="/css/bootstrap.css" />
+		<script type="text/javascript" src="/js/angular.js"></script>
+		<script type="text/javascript" src="/oauth2/oauth2.js"></script>
+		<script type="text/javascript" src="/googleApi.auth.js"></script>
+		<script type="text/javascript" src="/googleApi.js"></script>
+		<script type="text/javascript" src="/chromeTasks.js"></script>
+	</head>
+	<body class="container" ng-controller="MainController">
+		<h1>Chrome Tasks</h1>
+		<!--Add a button for the user to click to initiate auth sequence -->
+	    <button id="authorize-button" ng-click="doAuthorization()">Authorize</button>
+		
+		<h1 ng-bind="token"></h1>
+		
+		<ul>
+			<li ng-repeat="task in tasks">{{task}}</li>
+		</ul>
+	</body>
+</html>
