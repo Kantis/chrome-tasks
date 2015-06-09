@@ -28,9 +28,17 @@ GoogleApi.factory('tasksApi', ['$q', '$http', 'authApi', function ($q, $http, au
 			});
 		});
 	}
+
+	var updateTask = function(task) {
+		authApi.getAccessToken().then(function (result) {
+			$http.defaults.headers.common.Authorization = 'OAuth ' + result;
+			$http.put(task.selfLink, task);
+		})
+	}
 	
 	return {
 		getTaskLists: getTaskLists,
-		getTasks:  getTasks
+		getTasks:  getTasks,
+		updateTask: updateTask
 	};
 }]);

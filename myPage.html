@@ -4,6 +4,7 @@
 		<title>Chrome Tasks - New Tab</title>
 		<link rel="stylesheet" href="/css/bootstrap.css" />
 		<link rel="stylesheet" href="/css/chrometasks.css" />
+		<script type="text/javascript" src="/js/underscore-min.js"></script>
 		<script type="text/javascript" src="/js/angular.js"></script>
 		<script type="text/javascript" src="/oauth2/oauth2.js"></script>
 		<script type="text/javascript" src="/googleApi.auth.js"></script>
@@ -31,7 +32,11 @@
 			<div class="col-md-8 task-listing">
 				<div class="row task" ng-class="task.status" ng-repeat="task in tasks">
 					<span class="col-md-8">{{task.title}}</span>
-					<i class="col-md-1 col-md-offset-3 material-icons" ng-class="task.status">check</i>
+					<i class="complete-task-icon col-md-1 col-md-offset-3 material-icons"
+					   ng-class="task.status"
+					   ng-click="toggleCompleted(task.id)">
+					   check
+					</i>
 				</div>
 			</div>
 	    </div>

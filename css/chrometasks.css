@@ -36,10 +36,14 @@ body {
 	float: right;
 }
 
-i.needsAction {
+.complete-task-icon {
+	cursor: pointer;
+}
+
+.complete-task-icon.needsAction {
 	color: #c0c0c0;
 }
 
-i:hover {
+.complete-task-icon:hover {
 	color: #000;
 }
