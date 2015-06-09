@@ -1,3 +1,7 @@
 @mixin transition($property, $duration) {
 	transition: $property $duration ease-in-out;
 }
+
+@mixin material-module-shadow {
+	box-shadow: 0 2px 5px rgba(0,0,0,0.26);
+}

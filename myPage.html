@@ -34,14 +34,16 @@
 			    	</div>
 				</div>
 
-				<div class="col-md-8 task-listing">
-					<div class="row task" ng-class="task.status" ng-repeat="task in tasks">
-						<span class="task-title col-md-8">{{task.title}}</span>
-						<i class="complete-task-icon col-md-1 col-md-offset-3 material-icons"
-						   ng-class="task.status"
-						   ng-click="toggleCompleted(task.id)">
-						   check
-						</i>
+				<div class="col-md-8">
+					<div class="task-listing"> 
+						<div class="row task" ng-class="task.status" ng-repeat="task in tasks">
+							<span class="task-title col-md-8">{{task.title}}</span>
+							<i class="complete-task-icon col-md-1 col-md-offset-3 material-icons"
+							   ng-class="task.status"
+							   ng-click="toggleCompleted(task.id)">
+							   check
+							</i>
+						</div>
 					</div>
 
 		    		<div class="pull-right material-icons add-task-button circle">add</div>

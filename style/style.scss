@@ -10,7 +10,8 @@ header {
 	background-color: #4285f4;
 	color: #fff;
 
-	box-shadow: 0 2px 5px rgba(0,0,0,0.26);
+	@include material-module-shadow;
+
 	z-index: 1000;
 	position:fixed;
 	left: 0;
@@ -42,6 +43,10 @@ header {
 		background-color: rgba(0, 0, 0, 0.05);
 		color: #4285f4;
 	}
+}
+
+.task-listing {
+	@include material-module-shadow;
 }
 
 .task {
@@ -79,11 +84,13 @@ header {
 }
 
 .add-task-button {
+	$size: 50px;
+
 	background-color: #db4437;	
 	border-radius: 50%;
-	height: 40px;
-	width: 40px;
-	line-height: 40px !important; /* needs to override .material-icons */
+	height: $size;
+	width: $size;
+	line-height: $size !important; /* needs to override .material-icons */
 
 	text-align: center;
 	color: #fff;
