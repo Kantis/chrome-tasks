@@ -37,7 +37,9 @@
 				<div class="col-md-8">
 					<div class="task-listing"> 
 						<div class="row task" ng-class="task.status" ng-repeat="task in tasks">
-							<span class="task-title col-md-8">{{task.title}}</span>
+							<input type="text" class="task-title col-md-8" 
+								ng-model="task.title" 
+								ng-blur="updateTask(task)"/>
 							<i class="complete-task-icon col-md-1 col-md-offset-3 material-icons"
 							   ng-class="task.status"
 							   ng-click="toggleCompleted(task.id)">
@@ -46,7 +48,7 @@
 						</div>
 					</div>
 
-		    		<div class="pull-right material-icons add-task-button circle">add</div>
+		    		<div class="pull-right material-icons add-task-button circle" ng-click="newTask()">add</div>
 				</div>
 		    </div>
 		</div>

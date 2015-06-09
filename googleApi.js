@@ -35,10 +35,22 @@ GoogleApi.factory('tasksApi', ['$q', '$http', 'authApi', function ($q, $http, au
 			$http.put(task.selfLink, task);
 		})
 	}
+
+	var createTask = function(task, tasklistId) {
+		return $q(function (resolve, reject) {
+			authApi.getAccessToken().then(function (result) {
+				$http.defaults.headers.common.Authorization = 'OAuth ' + result;
+				$http.post(endpointBase + '/lists/' + tasklistId + '/tasks', task).then(function (result) {
+					resolve(result);
+				});
+			});
+		});
+	}
 	
 	return {
 		getTaskLists: getTaskLists,
 		getTasks:  getTasks,
-		updateTask: updateTask
+		updateTask: updateTask,
+		createTask: createTask
 	};
 }]);

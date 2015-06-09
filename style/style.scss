@@ -1,6 +1,10 @@
 @import 'mixins';
 @import 'variables';
 
+* {
+	box-sizing: border-box;
+}
+
 body {
 	background-color: #ececec;
 	font-family: 'Helvetica Neue';
@@ -60,7 +64,19 @@ header {
 	&.completed {
 		background-color: $completed-background-color;
 	}
+
+	&-title {
+		&:not(:focus) {
+			border: none;
+			background-color: transparent;
+		}
+
+		&:focus {
+			line-height: 36px;
+		}
+	}
 }
+
 
 .float-right {
 	float: right;

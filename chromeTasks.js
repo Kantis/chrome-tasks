@@ -37,7 +37,29 @@ chromeTasks.controller('MainController', ['tasksApi', '$scope', function (tasksA
 			delete task.completed;
 		}
 
-		updateTask(task);
+		$scope.updateTask(task);
+	}
+
+	$scope.newTask = function() {
+		var task = generateEmptyTask();
+
+		tasksApi.createTask(task, $scope.selectedList).then(function (result) {
+			task = result.data;
+			$scope.tasks.unshift(task);
+		});
+	}
+
+	$scope.updateTask = function(task) {
+		console.log('hello');
+		tasksApi.updateTask(task);
+	}
+
+	var generateEmptyTask = function() {
+		return {
+			"kind": "tasks#task",
+			"title": "New task",
+			"status": "needsAction"
+		}
 	}
 
 	var getTask = function (taskId) {
@@ -52,10 +74,6 @@ chromeTasks.controller('MainController', ['tasksApi', '$scope', function (tasksA
 				console.log(result);
 				$scope.tasks = result.data.items;
 			});
-	}
-
-	var updateTask = function(task) {
-		tasksApi.updateTask(task);
 	}
 
 	init();
