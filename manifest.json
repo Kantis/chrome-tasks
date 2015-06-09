@@ -1,5 +1,5 @@
 {
-  "manifest_version": 3,
+  "manifest_version": 2,
 
   "name": "Chrome Tasks",
   "description": "This extension replaces the new tab page with an app for managing Google Tasks",
