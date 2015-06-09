@@ -3,6 +3,18 @@ body {
 	font-family: 'Helvetica Neue';
 }
 
+header {
+	background-color: #4285f4;
+	color: #fff;
+}
+
+.app-title {
+	font-size: 1.5em;
+	margin: 0;
+	line-height: 40px;
+
+}
+
 .tasklist {
 	cursor: pointer;
 	line-height: 40px;

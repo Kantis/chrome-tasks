@@ -14,31 +14,37 @@
 		<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet">
 	</head>
-	<body class="container" ng-controller="MainController">
-		<h1 class="h3">Chrome Tasks</h1>
+	<body ng-controller="MainController">
+		<header>
+			<div class="container">
+				<h1 class="app-title">Chrome Tasks</h1>
+			</div>
+		</header>
 		<!--Add a button for the user to click to initiate auth sequence -->
 	    <!-- <button id="authorize-button" ng-click="doAuthorization()">Authorize</button> -->
 
-	    <div class="row">
-	    	<div class="col-md-2">
-	    		<div class="tasklist" 
-		    		ng-repeat="tasklist in tasklists" 
-		    		ng-click="selectList(tasklist.id)" 
-		    		ng-class="{'selected': isListSelected(tasklist.id)}">
-	    			{{tasklist.title}}
-		    	</div>
-			</div>
-
-			<div class="col-md-8 task-listing">
-				<div class="row task" ng-class="task.status" ng-repeat="task in tasks">
-					<span class="col-md-8">{{task.title}}</span>
-					<i class="complete-task-icon col-md-1 col-md-offset-3 material-icons"
-					   ng-class="task.status"
-					   ng-click="toggleCompleted(task.id)">
-					   check
-					</i>
+		<div class="container">
+		    <div class="row">
+		    	<div class="col-md-2">
+		    		<div class="tasklist" 
+			    		ng-repeat="tasklist in tasklists" 
+			    		ng-click="selectList(tasklist.id)" 
+			    		ng-class="{'selected': isListSelected(tasklist.id)}">
+		    			{{tasklist.title}}
+			    	</div>
 				</div>
-			</div>
-	    </div>
+
+				<div class="col-md-8 task-listing">
+					<div class="row task" ng-class="task.status" ng-repeat="task in tasks">
+						<span class="col-md-8">{{task.title}}</span>
+						<i class="complete-task-icon col-md-1 col-md-offset-3 material-icons"
+						   ng-class="task.status"
+						   ng-click="toggleCompleted(task.id)">
+						   check
+						</i>
+					</div>
+				</div>
+		    </div>
+		</div>
 	</body>
 </html>
