@@ -29,10 +29,13 @@ chromeTasks.controller('MainController', ['tasksApi', '$scope', function (tasksA
 	$scope.toggleCompleted = function(taskId) {
 		var task = getTask(taskId);
 
-		if (task.status == 'needsAction')
+		if (task.status == 'needsAction') {
 			task.status = 'completed';
-		else
+		}
+		else {
 			task.status = 'needsAction';
+			delete task.completed;
+		}
 
 		updateTask(task);
 	}
