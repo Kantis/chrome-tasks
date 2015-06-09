@@ -6,13 +6,23 @@ body {
 header {
 	background-color: #4285f4;
 	color: #fff;
+
+	box-shadow: 0 2px 5px rgba(0,0,0,0.26);
+	z-index: 1000;
+	position:fixed;
+	left: 0;
+	top: 0;
+	right: 0;
+}
+
+.app {
+	margin-top: 40px;
 }
 
 .app-title {
 	font-size: 1.5em;
 	margin: 0;
 	line-height: 40px;
-
 }
 
 .tasklist {
