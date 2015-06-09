@@ -39,7 +39,8 @@
 						<div class="row task" ng-class="task.status" ng-repeat="task in tasks">
 							<input type="text" class="task-title col-md-8" 
 								ng-model="task.title" 
-								ng-blur="updateTask(task)"/>
+								ng-blur="updateTask(task)"
+								focus-me="forceFocus == task.id" />
 							<i class="complete-task-icon col-md-1 col-md-offset-3 material-icons"
 							   ng-class="task.status"
 							   ng-click="toggleCompleted(task.id)">
