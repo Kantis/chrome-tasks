@@ -1,0 +1,45 @@
+body {
+	background-color: #ECECEC;
+	font-family: 'Helvetica Neue';
+}
+
+.tasklist {
+	cursor: pointer;
+	line-height: 40px;
+	padding: 4px 0 4px 16px;
+}
+
+.tasklist:hover {
+	background-color: #e4e4e4;
+}
+
+.tasklist.selected {
+	background-color: #E0E0E0;
+	color: #33AC71;
+}
+
+.task-listing {
+	background-color: #fff;
+	padding: 10px 0;
+}
+
+.task {
+	line-height: 40px;
+	padding: 4px 0 4px 16px;
+}
+
+.task.completed span {
+	text-decoration: line-through;
+}
+
+.float-right {
+	float: right;
+}
+
+i.needsAction {
+	color: #c0c0c0;
+}
+
+i:hover {
+	color: #000;
+}
