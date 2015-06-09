@@ -58,7 +58,7 @@ header {
 	@include transition(background-color, 400ms);
 
 	&.completed {
-		background-color: rgba(51, 172, 113, 0.25);
+		background-color: $completed-background-color;
 	}
 }
 
