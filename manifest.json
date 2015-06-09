@@ -1,9 +1,9 @@
 {
-  "manifest_version": 2,
+  "manifest_version": 3,
 
   "name": "Chrome Tasks",
-  "description": "This extension shows Google Tasks on the new tab page",
-  "version": "0.1",
+  "description": "This extension replaces the new tab page with an app for managing Google Tasks",
+  "version": "0.0.1",
   "chrome_url_overrides": {
     "newtab": "myPage.html"
   },
