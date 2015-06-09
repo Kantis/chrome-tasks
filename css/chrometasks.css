@@ -1,5 +1,5 @@
 body {
-	background-color: #ECECEC;
+	background-color: #fff;
 	font-family: 'Helvetica Neue';
 }
 
@@ -22,16 +22,15 @@ header {
 }
 
 .tasklist:hover {
-	background-color: #e4e4e4;
+	background-color: #F1f1f1;
 }
 
 .tasklist.selected {
-	background-color: #E0E0E0;
-	color: #33AC71;
+	background-color: #ECECEC;
+	color: #4285f4;
 }
 
 .task-listing {
-	background-color: #fff;
 	padding: 10px 0;
 }
 
@@ -58,4 +57,28 @@ header {
 
 .complete-task-icon:hover {
 	color: #000;
+}
+
+.add-task-button {
+	background-color: #db4437;	
+	border-radius: 50%;
+	height: 40px;
+	width: 40px;
+	line-height: 40px !important; /* needs to override .material-icons */
+
+	text-align: center;
+	color: #fff;
+
+	cursor: pointer;
+
+	margin-top: 30px;
+	margin-right: 5px;
+
+	transition: box-shadow 200ms;	
+
+	box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+}
+
+.add-task-button:hover {
+	box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15);
 }
