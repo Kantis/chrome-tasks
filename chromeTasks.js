@@ -63,6 +63,11 @@ chromeTasks.controller('MainController', ['tasksApi', '$scope', function (tasksA
 		});
 	}
 
+	$scope.clearList = function() {
+		tasksApi.clearList($scope.selectedList);
+		clearCompletedTasks();
+	}
+
 	var generateEmptyTask = function() {
 		return {
 			"kind": "tasks#task",
@@ -90,6 +95,12 @@ chromeTasks.controller('MainController', ['tasksApi', '$scope', function (tasksA
 				$scope.tasks = result.data.items;
 			});
 	}
+
+	var clearCompletedTasks = function() {
+		$scope.tasks = _.reject($scope.tasks, function (task) {
+			return task.status == 'completed';
+		});
+	};
 
 	init();
 }])

@@ -27,14 +27,14 @@ GoogleApi.factory('tasksApi', ['$q', '$http', 'authApi', function ($q, $http, au
 					});
 			});
 		});
-	}
+	};
 
 	var updateTask = function(task) {
 		authApi.getAccessToken().then(function (result) {
 			$http.defaults.headers.common.Authorization = 'OAuth ' + result;
 			$http.put(task.selfLink, task);
 		})
-	}
+	};
 
 	var createTask = function(task, tasklistId) {
 		return $q(function (resolve, reject) {
@@ -45,7 +45,7 @@ GoogleApi.factory('tasksApi', ['$q', '$http', 'authApi', function ($q, $http, au
 				});
 			});
 		});
-	}
+	};
 
 	var deleteTask = function(taskId, tasklistId) {
 		return $q(function (resolve, reject) {
@@ -56,13 +56,25 @@ GoogleApi.factory('tasksApi', ['$q', '$http', 'authApi', function ($q, $http, au
 				});
 			});
 		});
-	}
+	};
+
+	var clearList = function(tasklistId) {
+		return $q(function (resolve, reject) {
+			authApi.getAccessToken().then(function (result) {
+				$http.defaults.headers.common.Authorization = 'OAuth ' + result;
+				$http.post(endpointBase + '/lists/' + tasklistId + '/clear').then(function (result) {
+					resolve(result);
+				});
+			});
+		});
+	};
 	
 	return {
 		getTaskLists: getTaskLists,
 		getTasks:  getTasks,
 		updateTask: updateTask,
 		createTask: createTask,
-		deleteTask: deleteTask
+		deleteTask: deleteTask,
+		clearList: clearList
 	};
 }]);
