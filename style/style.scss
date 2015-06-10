@@ -23,6 +23,17 @@ header {
 	right: 0;
 }
 
+.l-center-content {
+	text-align: center;
+}
+
+.tasklist-actions {
+	margin-top: 12px;
+	opacity: 0.4;
+
+	@include transition(opacity, 300ms);
+}
+
 .app {
 	margin-top: 40px;
 }
@@ -31,6 +42,16 @@ header {
 	font-size: 1.5em;
 	margin: 0;
 	line-height: 40px;
+}
+
+.tasklists {
+	height: 80vh;
+
+	&:hover {
+		.tasklist-actions {
+			opacity: 1;
+		}
+	}
 }
 
 .tasklist {
@@ -132,6 +153,10 @@ header {
 		background-color: #db4437;	
 	}
 
+	&.green {
+		background-color: $green;
+	}
+
 	&.dark-gray {
 		background-color: #888;
 	}
@@ -152,7 +177,11 @@ header {
 }
 
 .toolbox {
+	margin-left: 15px;
 	.btn {
-		margin-top: 15px;
+		&:first-child {
+			margin-top: 12px;
+		}
+		margin-bottom: 15px;
 	}	
 }

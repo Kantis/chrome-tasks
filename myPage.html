@@ -25,13 +25,17 @@
 
 		<div class="app container">
 		    <div class="row">
-		    	<div class="col-md-2">
+		    	<div class="col-md-2 tasklists">
 		    		<div class="tasklist" 
 			    		ng-repeat="tasklist in tasklists" 
 			    		ng-click="selectList(tasklist.id)" 
 			    		ng-class="{'selected': isListSelected(tasklist.id)}">
 		    			{{tasklist.title}}
 			    	</div>
+
+			    	<div class="l-center-content tasklist-actions">
+			    		<div class="material-icons btn btn-float btn-circle green" ng-click="newTasklist()">list</div>
+		    		</div>
 				</div>
 
 				<div class="col-md-8">

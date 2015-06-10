@@ -1,5 +1,8 @@
-$completed-color: rgba(51, 172, 113, 1);
+$green: rgba(51, 172, 113, 1);
+
+$completed-color: $green;
 $completed-background-color: rgba(51, 172, 113, 0.09);
 
 $dimmed-action-color: #c0c0c0;
 $action-hover-color: #000;
+
