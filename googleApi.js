@@ -46,11 +46,23 @@ GoogleApi.factory('tasksApi', ['$q', '$http', 'authApi', function ($q, $http, au
 			});
 		});
 	}
+
+	var deleteTask = function(taskId, tasklistId) {
+		return $q(function (resolve, reject) {
+			authApi.getAccessToken().then(function (result) {
+				$http.defaults.headers.common.Authorization = 'OAuth ' + result;
+				$http.delete(endpointBase + '/lists/' + tasklistId + '/tasks/' + taskId).then(function (result) {
+					resolve(result);
+				});
+			});
+		});
+	}
 	
 	return {
 		getTaskLists: getTaskLists,
 		getTasks:  getTasks,
 		updateTask: updateTask,
-		createTask: createTask
+		createTask: createTask,
+		deleteTask: deleteTask
 	};
 }]);

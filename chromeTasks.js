@@ -52,8 +52,15 @@ chromeTasks.controller('MainController', ['tasksApi', '$scope', function (tasksA
 	}
 
 	$scope.updateTask = function(task) {
-		console.log('hello');
 		tasksApi.updateTask(task);
+	}
+
+	$scope.deleteTask = function(taskId) {
+		var task = getTask(taskId);
+		removeTask(taskId);
+		tasksApi.deleteTask(taskId, $scope.selectedList).then(function (result) {
+			// TODO: If delete is unsuccessful we could put the task back in the list and show an error
+		});
 	}
 
 	var generateEmptyTask = function() {
@@ -66,6 +73,12 @@ chromeTasks.controller('MainController', ['tasksApi', '$scope', function (tasksA
 
 	var getTask = function (taskId) {
 		return _.find($scope.tasks, function (task) {
+			return task.id == taskId;
+		});
+	}
+
+	var removeTask = function (taskId) {
+		$scope.tasks = _.reject($scope.tasks, function (task) {
 			return task.id == taskId;
 		});
 	}
@@ -87,7 +100,6 @@ chromeTasks.controller('MainController', ['tasksApi', '$scope', function (tasksA
     link: function(scope, element, attrs) {
       var model = $parse(attrs.focusMe);
       scope.$watch(model, function(value) {
-        console.log('value=',value);
         if(value === true) { 
           $timeout(function() {
             element[0].focus(); 
@@ -96,10 +108,9 @@ chromeTasks.controller('MainController', ['tasksApi', '$scope', function (tasksA
       });
       // to address @blesh's comment, set attribute value to 'false'
       // on blur event:
-      element.bind('blur', function() {
-         console.log('blur');
-         scope.$apply(model.assign(scope, false));
-      });
+      // element.bind('blur', function() {
+      //    scope.$apply(model.assign(scope, false));
+      // });
     }
   };
 });

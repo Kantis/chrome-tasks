@@ -77,26 +77,40 @@ header {
 	}
 }
 
+.dimmed {
+	color: $dimmed-action-color;
+
+}
 
 .float-right {
 	float: right;
 }
 
-.complete-task-icon {
-	line-height: 40px !important;
+
+.task-actions {
+	float: right;
+	cursor: default;
+}
+
+.task-action {
+	padding: 0 5px;
 	cursor: pointer;
 
-	&.needsAction {
-		color: #c0c0c0;
-	}
+	line-height: 40px !important;
 
-	&.completed {
-		color: $completed-color;
-	}
+	color: $dimmed-action-color;
 
 	&:hover {
-		color: #000;
+		color: $action-hover-color;
 	}
+
+	&:not(:last-child) {
+		margin-right: 5px;
+	}
+}
+
+.complete-task-icon.completed {
+	color: $completed-color;
 }
 
 .add-task-button {
