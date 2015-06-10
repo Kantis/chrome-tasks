@@ -76,6 +76,13 @@ GoogleApi.factory('tasksApi', ['$q', '$http', 'authApi', function ($q, $http, au
 		});
 	};
 
+	var deleteTaskList = function (tasklistId) {
+		authApi.getAccessToken().then(function (result) {
+			$http.defaults.headers.common.Authorization = 'OAuth ' + result;
+			$http.delete(endpointBase + '/users/@me/lists/' + tasklistId);
+		});
+	}
+
 	var clearList = function(tasklistId) {
 		return $q(function (resolve, reject) {
 			authApi.getAccessToken().then(function (result) {
@@ -95,6 +102,7 @@ GoogleApi.factory('tasksApi', ['$q', '$http', 'authApi', function ($q, $http, au
 		deleteTask: deleteTask,
 		clearList: clearList,
 		createTaskList: createTaskList,
-		updateTaskList: updateTaskList
+		updateTaskList: updateTaskList,
+		deleteTaskList: deleteTaskList
 	};
 }]);

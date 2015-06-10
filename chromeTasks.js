@@ -1,9 +1,9 @@
 'use strict';
 
-var chromeTasks = angular.module('chromeTasks', ['googleApi']);
+var chromeTasks = angular.module('chromeTasks', ['googleApi', 'ui.bootstrap']);
 
 
-chromeTasks.controller('MainController', ['tasksApi', '$scope', function (tasksApi, $scope) {
+chromeTasks.controller('MainController', ['tasksApi', '$modal', '$scope', function (tasksApi, $modal, $scope) {
 	$scope.tasklists = [];
 	$scope.tasks = [];
 	$scope.forceFocus = null;
@@ -24,9 +24,6 @@ chromeTasks.controller('MainController', ['tasksApi', '$scope', function (tasksA
 	$scope.selectList = function (selectedList, $event) {
 		$scope.selectedList = selectedList;
 		getTasksForList(selectedList);
-		console.log($event);
-		$event.preventDefault();
-		return;
 	}
 
 	$scope.isListSelected = function(tasklistId) {
@@ -86,6 +83,30 @@ chromeTasks.controller('MainController', ['tasksApi', '$scope', function (tasksA
 		tasksApi.updateTask(task);
 	}
 
+	$scope.deleteCurrentTaskList = function() {
+		var confirmationModal = $modal.open({
+			animation: true,
+			templateUrl: 'deleteTaskListModal.html',
+			controller: 'ConfirmationController',
+			resolve: {
+				actions: function () {
+					return ['cancel', 'delete'];
+				},
+				question: function() {
+					return 'Are you sure you want to delete the tasklist?';
+				}
+			}
+		});
+
+		confirmationModal.result.then(function (result) {
+			if (result === 'delete') {
+				tasksApi.deleteTaskList($scope.selectedList);
+				removeTaskList($scope.selectedList);
+				$scope.selectList(_.first($scope.tasklists).id);
+			}
+		});
+	}
+
 	$scope.deleteTask = function(taskId) {
 		var task = getTask(taskId);
 		removeTask(taskId);
@@ -136,6 +157,12 @@ chromeTasks.controller('MainController', ['tasksApi', '$scope', function (tasksA
 		});
 	}
 
+	var removeTaskList = function (tasklistId) {
+		$scope.tasklists = _.reject($scope.tasklists, function (tasklist) {
+			return tasklist.id == tasklistId;
+		});
+	}
+
 	var getTasksForList = function(taskList) {
 		tasksApi.getTasks($scope.selectedList).then(
 			function (result) {
@@ -173,4 +200,12 @@ chromeTasks.controller('MainController', ['tasksApi', '$scope', function (tasksA
       // });
     }
   };
+})
+.controller('ConfirmationController', function ($scope, $modalInstance, actions, question) {
+	$scope.question = question;
+	$scope.actions = actions;
+
+	$scope.resolve = function(result) {
+		$modalInstance.close(result);
+	}
 });

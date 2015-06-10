@@ -8,198 +8,231 @@
 body {
 	background-color: #ececec;
 	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-}
 
-header {
-	background-color: #4285f4;
-	color: #fff;
+	header {
+		background-color: #4285f4;
+		color: #fff;
 
-	@include material-module-shadow;
+		@include material-module-shadow;
 
-	z-index: 1000;
-	position:fixed;
-	left: 0;
-	top: 0;
-	right: 0;
-}
-
-.material-icons.small {
-	font-size: 16px;
-}
-
-.ng-hide {
-	display: none !important;
-}
-
-.l-center-content {
-	text-align: center;
-}
-
-.tasklist-actions {
-	margin-top: 12px;
-	opacity: 0.4;
-
-	@include transition(opacity, 300ms);
-}
-
-.tasklist-action {
-	line-height: 40px !important;
-	margin-right: 10px;
-
-	&:hover {
-		color: inherit !important;
-	}
-}
-
-.app {
-	margin-top: 40px;
-}
-
-.app-title {
-	font-size: 1.5em;
-	margin: 0;
-	line-height: 40px;
-}
-
-.hidden-input {
-	&:not(:focus) {
-		border: none;
-		background-color: transparent;
+		z-index: 1000;
+		position:fixed;
+		left: 0;
+		top: 0;
+		right: 0;
 	}
 
-	&:focus {
-		line-height: 36px;
+	.material-icons.small {
+		font-size: 16px;
 	}
-}
 
-.tasklists {
-	height: 80vh;
+	.modal {
+		&-content {
+			font-family: 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+			border-radius: 2px;
+			padding: 20px;
+		}
 
-	&:hover {
-		.tasklist-actions {
-			opacity: 1;
+		&-body {
+			font-size: 16px;
+			padding: 0;
+		}
+
+		&-footer {
+			border: none;
+			padding: 0;
+		}
+
+		&-action {
+			margin-left: 30px;
+			text-transform: uppercase;
+			font-weight: bold;
+			color: #2B9AF3;
+			cursor: pointer;
 		}
 	}
-}
 
-.tasklist {
-	cursor: pointer;
-	line-height: 40px;
-	padding: 4px 0 4px 16px;
-	font-weight: bold;
-	width: 100%;
 
-	&:hover {
-		background-color: rgba(0, 0, 0, 0.03);
+
+	.ng-hide {
+		display: none !important;
 	}
 
-	&.selected {
-		background-color: rgba(0, 0, 0, 0.05);
-		color: #4285f4;
-	}
-}
-
-.task-listing {
-	@include material-module-shadow;
-}
-
-.task {
-	line-height: 40px;
-	padding: 4px 0 4px 16px;
-	background-color: #fff;
-	margin: 1px 0;
-
-	@include transition(background-color, 400ms);
-
-	&.completed {
-		background-color: $completed-background-color;
-	}
-}
-
-.dimmed {
-	color: $dimmed-action-color;
-
-}
-
-.float-right {
-	float: right;
-}
-
-
-.task-actions {
-	float: right;
-	cursor: default;
-}
-
-.task-action {
-	padding: 0 5px;
-	cursor: pointer;
-
-	line-height: 40px !important;
-
-	color: $dimmed-action-color;
-
-	&:hover {
-		color: $action-hover-color;
+	.l-center-content {
+		text-align: center;
 	}
 
-	&:not(:last-child) {
-		margin-right: 5px;
-	}
-}
+	.tasklist-actions {
+		margin-top: 12px;
+		opacity: 0.4;
 
-.complete-task-icon.completed {
-	color: $completed-color;
-}
-
-.btn {
-	cursor: pointer;
-	text-align: center;
-	color: #fff;
-}
-
-.btn-circle {
-	$size: 50px;
-	height: $size;
-	width: $size;
-	line-height: $size !important; /* needs to override .material-icons */
-	padding: 0;
-
-	border-radius: 50%;
-
-	&.red {
-		background-color: #db4437;	
+		@include transition(opacity, 300ms);
+		
+		.btn:not(:last-child) {
+			margin-bottom: 15px;
+		}
 	}
 
-	&.green {
-		background-color: $green;
+	.tasklist-action {
+		line-height: 40px !important;
+		margin-right: 10px;
+
+		&:hover {
+			color: inherit !important;
+		}
 	}
 
-	&.dark-gray {
-		background-color: #888;
+	.app {
+		margin-top: 40px;
 	}
 
-	&:hover {
-		color: white;
+	.app-title {
+		font-size: 1.5em;
+		margin: 0;
+		line-height: 40px;
 	}
-}
 
-.btn-float {
-	@include transition(box-shadow, 200ms);
+	.hidden-input {
+		&:not(:focus) {
+			border: none;
+			background-color: transparent;
+		}
 
-	box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
-
-	&:hover {
-		box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15);
+		&:focus {
+			line-height: 36px;
+		}
 	}
-}
 
-.toolbox {
-	margin-left: 15px;
+	.tasklists {
+		height: 80vh;
+
+		&:hover {
+			.tasklist-actions {
+				opacity: 1;
+			}
+		}
+	}
+
+	.tasklist {
+		cursor: pointer;
+		line-height: 40px;
+		padding: 4px 0 4px 16px;
+		font-weight: bold;
+		width: 100%;
+
+		&:hover {
+			background-color: rgba(0, 0, 0, 0.03);
+		}
+
+		&.selected {
+			background-color: rgba(0, 0, 0, 0.05);
+			color: #4285f4;
+		}
+	}
+
+	.task-listing {
+		@include material-module-shadow;
+	}
+
+	.task {
+		line-height: 40px;
+		padding: 4px 0 4px 16px;
+		background-color: #fff;
+		margin: 1px 0;
+
+		@include transition(background-color, 400ms);
+
+		&.completed {
+			background-color: $completed-background-color;
+		}
+	}
+
+	.dimmed {
+		color: $dimmed-action-color;
+
+	}
+
+	.float-right {
+		float: right;
+	}
+
+
+	.task-actions {
+		float: right;
+		cursor: default;
+	}
+
+	.task-action {
+		padding: 0 5px;
+		cursor: pointer;
+
+		line-height: 40px !important;
+
+		color: $dimmed-action-color;
+
+		&:hover {
+			color: $action-hover-color;
+		}
+
+		&:not(:last-child) {
+			margin-right: 5px;
+		}
+	}
+
+	.complete-task-icon.completed {
+		color: $completed-color;
+	}
+
 	.btn {
-		&:first-child {
-			margin-top: 12px;
+		cursor: pointer;
+		text-align: center;
+		color: #fff;
+	}
+
+	.btn-circle {
+		$size: 50px;
+		height: $size;
+		width: $size;
+		line-height: $size !important; /* needs to override .material-icons */
+		padding: 0;
+
+		border-radius: 50%;
+
+		&.red {
+			background-color: #db4437;	
 		}
-		margin-bottom: 15px;
-	}	
+
+		&.green {
+			background-color: $green;
+		}
+
+		&.dark-gray {
+			background-color: #888;
+		}
+
+		&:hover {
+			color: white;
+		}
+	}
+
+	.btn-float {
+		@include transition(box-shadow, 200ms);
+
+		box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+
+		&:hover {
+			box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15);
+		}
+	}
+
+	.toolbox {
+		margin-left: 15px;
+		.btn {
+			&:first-child {
+				margin-top: 12px;
+			}
+			margin-bottom: 15px;
+		}	
+	}
 }
+

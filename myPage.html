@@ -6,6 +6,7 @@
 		<link rel="stylesheet" href="/css/chrometasks.css" />
 		<script type="text/javascript" src="/js/underscore-min.js"></script>
 		<script type="text/javascript" src="/js/angular.js"></script>
+		<script type="text/javascript" src="/js/ui-bootstrap-0.13.0.min.js"></script>
 		<script type="text/javascript" src="/oauth2/oauth2.js"></script>
 		<script type="text/javascript" src="/googleApi.auth.js"></script>
 		<script type="text/javascript" src="/googleApi.js"></script>
@@ -52,6 +53,8 @@
 
 			    	<div class="l-center-content tasklist-actions">
 			    		<div class="material-icons btn btn-float btn-circle green" ng-click="newTasklist()">list</div>
+			    		<div class="clearfix"></div>
+			    		<div class="material-icons btn btn-float btn-circle dark-gray" ng-click="deleteCurrentTaskList()">delete</div>
 		    		</div>
 				</div>
 
@@ -87,5 +90,15 @@
 				</div>
 		    </div>
 		</div>
+
+		<script type="text/ng-template" id="deleteTaskListModal.html">
+			<div class="modal-body">
+				<p>{{question}}</p>
+			</div>
+			<div class="modal-footer">
+				<a class="modal-action" ng-repeat="action in actions" ng-click="resolve(action)">{{action}}</a>
+			</div>
+		</script>
+		<link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
 	</body>
 </html>
