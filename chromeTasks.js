@@ -68,6 +68,11 @@ chromeTasks.controller('MainController', ['tasksApi', '$scope', function (tasksA
 		clearCompletedTasks();
 	}
 
+	$scope.removeFocusOnEnter = function($event) {
+		if ($event.keyIdentifier === "Enter")
+			document.activeElement.blur();
+	}
+
 	var generateEmptyTask = function() {
 		return {
 			"kind": "tasks#task",
