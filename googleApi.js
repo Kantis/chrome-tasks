@@ -33,8 +33,26 @@ GoogleApi.factory('tasksApi', ['$q', '$http', 'authApi', function ($q, $http, au
 		authApi.getAccessToken().then(function (result) {
 			$http.defaults.headers.common.Authorization = 'OAuth ' + result;
 			$http.put(task.selfLink, task);
-		})
+		});
 	};
+
+	var updateTaskList = function (tasklist) {
+		authApi.getAccessToken().then(function (result) {
+			$http.defaults.headers.common.Authorization = 'OAuth ' + result;
+			$http.put(tasklist.selfLink, tasklist);
+		});
+	};
+
+	var createTaskList = function(tasklist) {
+		return $q(function (resolve, reject) {
+			authApi.getAccessToken().then(function (result) {
+				$http.defaults.headers.common.Authorization = 'OAuth ' + result;
+				$http.post(endpointBase + '/users/@me/lists', tasklist).then(function (result) {
+					resolve(result);
+				});
+			});
+		});
+	}
 
 	var createTask = function(task, tasklistId) {
 		return $q(function (resolve, reject) {
@@ -75,6 +93,8 @@ GoogleApi.factory('tasksApi', ['$q', '$http', 'authApi', function ($q, $http, au
 		updateTask: updateTask,
 		createTask: createTask,
 		deleteTask: deleteTask,
-		clearList: clearList
+		clearList: clearList,
+		createTaskList: createTaskList,
+		updateTaskList: updateTaskList
 	};
 }]);

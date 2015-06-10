@@ -26,12 +26,29 @@
 		<div class="app container">
 		    <div class="row">
 		    	<div class="col-md-2 tasklists">
-		    		<div class="tasklist" 
-			    		ng-repeat="tasklist in tasklists" 
-			    		ng-click="selectList(tasklist.id)" 
-			    		ng-class="{'selected': isListSelected(tasklist.id)}">
-		    			{{tasklist.title}}
-			    	</div>
+		    		<div ng-repeat="tasklist in tasklists">
+			    		<input type="text"
+			    		    class="tasklist hidden-input" 
+			    		    ng-show="tasklistBeingEdited == tasklist.id"
+			    		    ng-model="tasklist.title"
+				    		focus-me="forceFocus == tasklist.id"
+				    		ng-keydown="removeFocusOnEnter($event)"
+				    		ng-blur="saveTaskListAndSelect(tasklist)"
+				    		ng-class="{'selected': isListSelected(tasklist.id)}">
+				    	</input>
+				    	<div class="tasklist" 
+				    		ng-show="tasklistBeingEdited != tasklist.id"
+				    		ng-click="selectList(tasklist.id, $event)"
+				    		ng-class="{'selected': isListSelected(tasklist.id)}">
+				    		{{tasklist.title}}
+					    	<i class="material-icons tasklist-action small dimmed pull-right" 
+					    		ng-click="editTaskList(tasklist.id)"
+					    		ng-show="isListSelected(tasklist.id)">
+					    		edit
+					    	</i>
+				    	</div>
+				    </div>
+
 
 			    	<div class="l-center-content tasklist-actions">
 			    		<div class="material-icons btn btn-float btn-circle green" ng-click="newTasklist()">list</div>
@@ -41,7 +58,7 @@
 				<div class="col-md-8">
 					<div class="task-listing"> 
 						<div class="row task" ng-class="task.status" ng-repeat="task in tasks">
-							<input type="text" class="task-title col-md-9" 
+							<input type="text" class="hidden-input task-title col-md-9" 
 								ng-model="task.title" 
 								ng-blur="updateTask(task)"
 					    		ng-keydown="removeFocusOnEnter($event)"

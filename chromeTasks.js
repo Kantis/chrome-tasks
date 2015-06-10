@@ -7,24 +7,35 @@ chromeTasks.controller('MainController', ['tasksApi', '$scope', function (tasksA
 	$scope.tasklists = [];
 	$scope.tasks = [];
 	$scope.forceFocus = null;
+	$scope.tasklistBeingEdited = null;
+	$scope.showDiv = false;
 
 	var init = function() {
 		tasksApi.getTaskLists().then(
 			function (result) {
 				$scope.tasklists =  result.data.items;
+				console.log(result);
 				$scope.selectedList = result.data.items[0].id;
 
 				getTasksForList($scope.selectedList);
 			});
 	}
 
-	$scope.selectList = function (selectedList) {
+	$scope.selectList = function (selectedList, $event) {
 		$scope.selectedList = selectedList;
 		getTasksForList(selectedList);
+		console.log($event);
+		$event.preventDefault();
+		return;
 	}
 
 	$scope.isListSelected = function(tasklistId) {
 		return $scope.selectedList == tasklistId;
+	}
+
+	$scope.editTaskList = function (tasklistId) {
+		$scope.tasklistBeingEdited = tasklistId;
+		$scope.forceFocus = tasklistId;
 	}
 
 	$scope.toggleCompleted = function(taskId) {
@@ -51,6 +62,26 @@ chromeTasks.controller('MainController', ['tasksApi', '$scope', function (tasksA
 		});
 	}
 
+	$scope.newTasklist = function() {
+		var tasklist = generateNewTaskList();
+		$scope.tasklists.unshift(tasklist);
+		$scope.tasklistBeingEdited = tasklist.id;
+		$scope.forceFocus = tasklist.id;
+	}
+
+	$scope.saveTaskListAndSelect = function(tasklist) {
+		if (tasklist.id === 'temp') {
+			delete tasklist.id;
+			tasksApi.createTaskList(tasklist).then(function (result) {
+				tasklist.id = result.data.id;
+				tasklist.selfLink = result.data.selfLink;
+				tasklist.updated = result.data.updated;
+			});
+		} else {
+			tasksApi.updateTaskList(tasklist);
+		}
+	}
+
 	$scope.updateTask = function(task) {
 		tasksApi.updateTask(task);
 	}
@@ -70,7 +101,11 @@ chromeTasks.controller('MainController', ['tasksApi', '$scope', function (tasksA
 
 	$scope.removeFocusOnEnter = function($event) {
 		if ($event.keyIdentifier === "Enter")
-			document.activeElement.blur();
+			removeFocus();
+	}
+
+	var removeFocus = function() {
+		document.activeElement.blur();
 	}
 
 	var generateEmptyTask = function() {
@@ -78,7 +113,15 @@ chromeTasks.controller('MainController', ['tasksApi', '$scope', function (tasksA
 			"kind": "tasks#task",
 			"title": "New task",
 			"status": "needsAction"
-		}
+		};
+	}
+
+	var generateNewTaskList = function() {
+		return {
+			"kind": "tasks#taskList",
+			"title": "New tasklist",
+			"id": "temp"
+		};
 	}
 
 	var getTask = function (taskId) {
@@ -96,7 +139,6 @@ chromeTasks.controller('MainController', ['tasksApi', '$scope', function (tasksA
 	var getTasksForList = function(taskList) {
 		tasksApi.getTasks($scope.selectedList).then(
 			function (result) {
-				console.log(result);
 				$scope.tasks = result.data.items;
 			});
 	}

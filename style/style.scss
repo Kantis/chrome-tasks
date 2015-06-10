@@ -23,6 +23,14 @@ header {
 	right: 0;
 }
 
+.material-icons.small {
+	font-size: 16px;
+}
+
+.ng-hide {
+	display: none !important;
+}
+
 .l-center-content {
 	text-align: center;
 }
@@ -34,6 +42,15 @@ header {
 	@include transition(opacity, 300ms);
 }
 
+.tasklist-action {
+	line-height: 40px !important;
+	margin-right: 10px;
+
+	&:hover {
+		color: inherit !important;
+	}
+}
+
 .app {
 	margin-top: 40px;
 }
@@ -42,6 +59,17 @@ header {
 	font-size: 1.5em;
 	margin: 0;
 	line-height: 40px;
+}
+
+.hidden-input {
+	&:not(:focus) {
+		border: none;
+		background-color: transparent;
+	}
+
+	&:focus {
+		line-height: 36px;
+	}
 }
 
 .tasklists {
@@ -59,6 +87,7 @@ header {
 	line-height: 40px;
 	padding: 4px 0 4px 16px;
 	font-weight: bold;
+	width: 100%;
 
 	&:hover {
 		background-color: rgba(0, 0, 0, 0.03);
@@ -84,17 +113,6 @@ header {
 
 	&.completed {
 		background-color: $completed-background-color;
-	}
-
-	&-title {
-		&:not(:focus) {
-			border: none;
-			background-color: transparent;
-		}
-
-		&:focus {
-			line-height: 36px;
-		}
 	}
 }
 
