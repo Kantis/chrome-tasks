@@ -227,10 +227,12 @@ body {
 
 	.toolbox {
 		margin-left: 15px;
+
+		.row:first-child {
+			margin-top: 12px;
+		}
+
 		.btn {
-			&:first-child {
-				margin-top: 12px;
-			}
 			margin-bottom: 15px;
 		}	
 	}

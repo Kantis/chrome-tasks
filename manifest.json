@@ -3,7 +3,7 @@
 
   "name": "Chrome Tasks",
   "description": "This extension replaces the new tab page with an app for managing Google Tasks",
-  "version": "0.0.2",
+  "version": "0.1.0",
   "chrome_url_overrides": {
     "newtab": "myPage.html"
   },
