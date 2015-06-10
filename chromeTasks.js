@@ -118,7 +118,9 @@ chromeTasks.controller('MainController', ['tasksApi', '$scope', function (tasksA
       scope.$watch(model, function(value) {
         if(value === true) { 
           $timeout(function() {
-            element[0].focus(); 
+          	var e = element[0];
+            e.focus(); 
+            e.setSelectionRange(0, e.value.length);
           });
         }
       });
