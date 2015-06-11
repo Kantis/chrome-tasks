@@ -14,7 +14,6 @@ chromeTasks.controller('MainController', ['tasksApi', '$modal', '$scope', functi
 		tasksApi.getTaskLists().then(
 			function (result) {
 				$scope.tasklists =  result.data.items;
-				console.log(result);
 				$scope.selectedList = result.data.items[0].id;
 
 				getTasksForList($scope.selectedList);
@@ -121,8 +120,10 @@ chromeTasks.controller('MainController', ['tasksApi', '$modal', '$scope', functi
 	}
 
 	$scope.removeFocusOnEnter = function($event) {
-		if ($event.keyIdentifier === "Enter")
+		if ($event.keyIdentifier === "Enter") {
+			$scope.forceFocus = null;
 			removeFocus();
+		}
 	}
 
 	var removeFocus = function() {
