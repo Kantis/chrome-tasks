@@ -26,7 +26,7 @@
 
 		<div class="app container">
 		    <div class="row">
-		    	<div class="col-md-2 tasklists">
+		    	<div class="col-xs-2 tasklists">
 		    		<div ng-repeat="tasklist in tasklists">
 			    		<input type="text"
 			    		    class="tasklist hidden-input" 
@@ -47,6 +47,7 @@
 					    		ng-show="isListSelected(tasklist.id)">
 					    		edit
 					    	</i>
+					    	<div class="clearfix"></div>
 				    	</div>
 				    </div>
 
@@ -58,15 +59,15 @@
 		    		</div>
 				</div>
 
-				<div class="col-md-8">
+				<div class="col-xs-8">
 					<div class="task-listing"> 
 						<div class="row task" ng-class="task.status" ng-repeat="task in tasks">
-							<input type="text" class="hidden-input task-title col-md-9" 
+							<input type="text" class="hidden-input task-title col-xs-9" 
 								ng-model="task.title" 
 								ng-blur="updateTask(task)"
 					    		ng-keydown="removeFocusOnEnter($event)"
 								focus-me="forceFocus == task.id" />
-							<div class="task-actions col-md-2 col-md-offset-1">
+							<div class="task-actions col-xs-3 col-md-offset-1 col-md-2">
 								<i class="task-action complete-task-icon material-icons"
 								   ng-class="task.status"
 								   ng-click="toggleCompleted(task.id)">
@@ -80,7 +81,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-md-1 toolbox">
+				<div class="col-xs-1 toolbox">
 					<div class="row">
 						<div class="material-icons btn btn-float btn-circle red" ng-click="newTask()">add</div>
 					</div>
