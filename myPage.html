@@ -86,7 +86,11 @@
 						<div class="material-icons btn btn-float btn-circle red" ng-click="newTask()">add</div>
 					</div>
 					<div class="row">
-						<div class="material-icons btn btn-float btn-circle dark-gray" ng-click="clearList()">done_all</div>
+						<div class="material-icons btn btn-float btn-circle dark-gray" 
+							ng-show="(tasks | filter: {status: 'completed'}).length > 0"
+							ng-click="clearList()">
+							done_all
+						</div>
 					</div>
 				</div>
 		    </div>
