@@ -166,7 +166,10 @@ chromeTasks.controller('MainController', ['tasksApi', '$modal', '$scope', functi
 	var getTasksForList = function(taskList) {
 		tasksApi.getTasks($scope.selectedList).then(
 			function (result) {
-				$scope.tasks = result.data.items;
+				if (result.data.items !== undefined)
+					$scope.tasks = result.data.items;
+				else
+					$scope.tasks = [];
 			});
 	}
 
